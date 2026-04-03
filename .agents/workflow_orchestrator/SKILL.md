@@ -732,11 +732,14 @@ docs/
 
 ### 4.1 Níveis de POC
 
-| Nível | Complexidade | Duração | Documentação | Quando Usar |
-|-------|--------------|---------|--------------|-------------|
-| **Nano POC** | Baixa | 1-2 horas | Session Notes | Validar ideia simples |
-| **Micro POC** | Média | 1-2 dias | Implementation Notes + Drift Check | Feature nova |
-| **Macro POC** | Alta | 3-5 dias | Full RRA + Playground | Sistema complexo |
+| Nível | Complexidade | Duração | Documentação Obrigatória | Quando Usar |
+|-------|--------------|---------|-------------------------|-------------|
+| **Nano POC** | Baixa | 1-4 horas | Planning + Full Report (README.md) | Validar ideia simples / API |
+| **Micro POC** | Média | 1-3 dias | Planning + Backlog + Log + Full Report | Feature nova / Integração |
+| **Macro POC** | Alta | 3-7 dias | Full RRA + Full Lifecycle Docs + Full Report | Sistema complexo / Nova Arquitetura |
+
+> [!IMPORTANT]
+> Toda POC, independente do nível, deve terminar com um **Full Report (README.md)** conforme definido na skill `poc_factory`. Este relatório é o gatilho para a decisão de integração.
 
 ### 4.2 Nano POC (Lone Wolf)
 

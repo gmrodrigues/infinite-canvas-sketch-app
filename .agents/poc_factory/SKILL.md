@@ -55,11 +55,19 @@ do estado atual do projeto principal — que pode estar em transição.
 Uma POC não é um arquivo solto. É um **mini-projeto com início, meio e fim**, contendo:
 
 ```
-pocs/[nome_poc]/
+pocs/[ID]_[nome_poc]/
 ├── build.zig         # Build autossuficiente (não referencia build.zig raiz)
 ├── main.zig          # Entry point standalone
 ├── [outros .zig]     # Módulos internos copiados/adaptados localmente
 │
+```
+
+### Regras de Nomeação
+- Toda POC deve começar com um ID sequencial de 3 dígitos (ex: `001`, `002`).
+- O nome deve ser descritivo e em snake_case.
+- Exemplo: `pocs/001_libinput_tablet_input/`.
+
+```
 ├── planning.md       # Hipótese, escopo, critérios de sucesso — feito ANTES de codar
 ├── backlog.md        # Tarefas da POC (mini-sprint)
 ├── log.md            # Diário de descobertas durante o desenvolvimento
@@ -142,6 +150,29 @@ pocs/[nome_poc]/
 
 ---
 
+## Workflow de Relatório (Full Report)
+
+Ao concluir uma POC, é obrigatório gerar um **Full Report** que documente não apenas o sucesso/falha, mas as descobertas que impactam a arquitetura.
+
+### Conteúdo do README.md (Relatório)
+
+1.  **Hipótese Original**: Copiada do `planning.md`.
+2.  **Como Executar**: Comandos exatos para reproduzir.
+3.  **Resultado**: O que foi observado (métricas, logs, screenshots).
+4.  **Descobertas Técnicas**: Gotchas, bugs corrigidos, mudanças de API (ex: compatibilidade com novas versões de Zig).
+5.  **Decisão**: INTEGRAR, REVISAR ou ABANDONAR.
+6.  **Plano de Integração**: Passos concretos se a decisão for integrar.
+7.  **Segurança e Concorrência**: Como foram mitigados data races e crashes (ex: modelo atomics, safety-checks do Zig, stress tests).
+8.  **Learnings**: Conhecimento acumulado para o futuro.
+
+### Execução do Workflow de Relatório
+- **Antes de Rodar**: Verificar se todos os critérios de sucesso do `planning.md` foram testados.
+- **Durante o Teste**: Capturar logs relevantes e evidências de funcionamento (pressure, tilt, latency).
+- **Após Rodar**: Preencher o `README.md` imediatamente enquanto as descobertas estão frescas.
+- **Feedback Loop**: Notificar o Architect ou stakeholders sobre o resultado.
+
+---
+
 ## Estrutura de Diretórios do Projeto
 
 ```
@@ -154,9 +185,9 @@ infinite-canvas-sketch-app/
 │   │   ├── nano/
 │   │   ├── micro/
 │   │   └── macro/
-│   ├── libinput_pressure/       #   Exemplo: Nano POC validada
-│   ├── spsc_sokol_pipeline/     #   Exemplo: Micro POC em andamento
-│   └── [nova_poc]/              #   Nova POC (mini-projeto completo)
+│   ├── 001_libinput_tablet/       #   Exemplo: Nano POC validada
+│   ├── 002_spsc_pipeline/     #   Exemplo: Micro POC em andamento
+│   └── [ID]_[nova_poc]/              #   Nova POC (mini-projeto completo)
 │
 └── docs/
     ├── Tech.md
@@ -295,8 +326,9 @@ zig build run
 ```
 1. Identificar incerteza ou feature nova
 2. Escolher nível (Nano/Micro/Macro)
-3. Criar pocs/[nome_poc]/ com estrutura completa
-4. Preencher planning.md (ANTES de codar)
+3. Determinar o próximo ID sequencial disponível em `pocs/`
+4. Criar `pocs/[ID]_[nome_poc]/` com estrutura completa
+5. Preencher `planning.md` (ANTES de codar)
 5. Codar em isolamento — build.zig próprio, imports locais
    → Pode LER qualquer código do projeto como referência
    → Pode COPIAR lógica para dentro do próprio diretório
@@ -309,6 +341,9 @@ zig build run
 ```
 
 **Nunca pule do passo 4 para o 9 diretamente.**
+
+### Workflow do Relatório Final (Step 8 Enhanced)
+> Se a POC revelou quebras de contrato ou instabilidades (ex: C-ABI), o relatório DEVE detalhar as correções aplicadas para servir de guia na integração.
 
 ---
 
@@ -328,6 +363,7 @@ zig build run
 ### Documentação
 - [ ] `planning.md` preenchido antes do código
 - [ ] `README.md` preenchido com resultado e decisão
+- [ ] Seção de **Segurança e Concorrência** documentada (se aplicável ao nível)
 
 ---
 

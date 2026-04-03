@@ -1,4 +1,4 @@
-# Planning: libinput_tablet_input
+# Planning: 001_libinput_tablet_input
 
 **Tipo:** Nano  
 **Status:** FINALIZADA ✅  
