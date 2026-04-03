@@ -1,0 +1,31 @@
+# Zig build artifacts
+zig-out/
+zig-cache/
+.zig-cache/
+
+# POC build artifacts (each POC has its own build)
+pocs/**/zig-out/
+pocs/**/zig-cache/
+pocs/**/.zig-cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Binaries
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+
+# Temp / debug
+*.tmp
+*.log

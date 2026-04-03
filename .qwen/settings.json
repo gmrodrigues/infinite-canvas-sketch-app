@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(plantuml *)",
+      "Bash(zig *)",
+      "Bash(mkdir *)"
+    ]
+  },
+  "$version": 3
+}
