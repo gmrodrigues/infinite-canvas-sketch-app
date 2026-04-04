@@ -1,0 +1,17 @@
+.{
+    .name = .wacom_input_viz,
+    .version = "0.1.0",
+    .fingerprint = 0x287537e71d589357,
+    .minimum_zig_version = "0.13.0",
+    .dependencies = .{
+        .sokol = .{
+            .url = "git+https://github.com/floooh/sokol-zig.git#master",
+            .hash = "sokol-0.1.0-pb1HKzjRNgBQ6j0XCHKU67851AXs8dhocE31Jqxy5fRS",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "main.zig",
+    },
+}

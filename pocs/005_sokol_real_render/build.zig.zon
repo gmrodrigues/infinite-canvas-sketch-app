@@ -1,0 +1,17 @@
+.{
+    .name = .poc_005_sokol_real_render,
+    .version = "0.1.0",
+    .fingerprint = 0xb1598eed8877ddf2,
+    .minimum_zig_version = "0.13.0",
+    .dependencies = .{
+        .sokol = .{
+            .url = "git+https://github.com/floooh/sokol-zig.git#master",
+            .hash = "sokol-0.1.0-pb1HKzjRNgBQ6j0XCHKU67851AXs8dhocE31Jqxy5fRS",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "main.zig",
+    },
+}

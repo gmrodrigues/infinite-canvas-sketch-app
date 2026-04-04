@@ -3,7 +3,19 @@
     "allow": [
       "Bash(plantuml *)",
       "Bash(zig *)",
-      "Bash(mkdir *)"
+      "Bash(mkdir *)",
+      "Bash(timeout *)",
+      "Bash(true)",
+      "Bash(glxinfo)",
+      "Bash(gdb *)",
+      "Bash(sleep *)",
+      "Bash(xdotool *)",
+      "Bash(./zig-out/bin/poc_005_sokol_real_render)",
+      "Bash(head *)",
+      "Bash(file *)",
+      "Bash(/home/glauber/arquivos/projetos/code-labs/infinite-canvas-sketch-app/pocs/006_wacom_input_visualization/zig-out/bin/poc_006_wacom_input_visualization)",
+      "Bash(kill *)",
+      "Bash(/home/glauber/arquivos/projetos/code-labs/infinite-canvas-sketch-app/pocs/007_sdl2_wacom_visualization/zig-out/bin/poc_007_sdl2_wacom_visualization)"
     ]
   },
   "$version": 3
