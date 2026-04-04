@@ -8,6 +8,19 @@
 
 > O filtro de Savitzky-Golay com uma janela de 5 a 7 pontos é capaz de remover o ruído de alta frequência (jitter) do tablet Wacom em tempo real, mantendo a latência de processamento abaixo de 0.1ms por ponto e preservando a intenção do traço original (especialmente em curvas fechadas).
 
+## Retrospectiva & Síntese (Linhagem da POC)
+
+Esta seção documenta a linhagem técnica desta POC e o reuso de validações anteriores.
+
+### POCs Anteriores Referenciadas
+- `pocs/001_libinput_tablet_input/` — **Retrospectiva:** Validou a compatibilidade de hardware e a captura de coordenadas Wacom.
+- `pocs/002_sokol_spsc_pipeline/` — **Retrospectiva:** Validou o pipeline de baixa latência usando `SpscQueue`, permitindo o fluxo de dados sem travas.
+
+### Síntese de Reuso (O que será usado?)
+- **Módulos/Arquivos:** Embora esta POC foque no algoritmo matemático isolado, utilizamos as coordenadas extraídas das POCs 001/002 como massa de teste para validar a redução de ruído.
+- **Lógica/Padrões:** O padrão de processamento por ponto (stream-oriented) validado aqui será o próximo passo de processamento após a saída da `SpscQueue` (POC 002).
+- **Por que é útil?** Saber que o hardware é compatível e o pipeline é rápido permite que foquemos 100% na qualidade matemática do filtro Savitzky-Golay.
+
 ## Escopo
 
 O que esta POC VAI validar:

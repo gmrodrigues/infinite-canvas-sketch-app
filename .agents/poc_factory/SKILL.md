@@ -225,6 +225,19 @@ O que esta POC NÃO VAI validar (fora de escopo):
 - [ ] [Critério mensurável 1 — ex: latência < 1ms]
 - [ ] [Critério mensurável 2]
 
+## Retrospectiva & Síntese (Linhagem da POC)
+
+Esta seção documenta a linhagem técnica desta POC, referenciando validações anteriores e o que será extraído delas.
+
+### POCs Anteriores Referenciadas
+- `pocs/[ID]_[nome]/` — **Retrospectiva:** O que foi demonstrado? (Ex: "Validou que o filtro SG reduz jitter em 80%").
+- `pocs/[ID]_[outra]/` — **Retrospectiva:** [...]
+
+### Síntese de Reuso (O que será usado?)
+- **Módulos/Arquivos:** `[arquivo].zig` será copiado e adaptado para [finalidade].
+- **Lógica/Padrões:** O padrão de [Threading/Memory] da POC [ID] será replicado aqui.
+- **Por que é útil?** Explicação de como esses componentes aceleram ou tornam viável esta nova validação.
+
 ## Referências Consultadas
 
 - `src/[arquivo].zig` — consultado para entender padrão X

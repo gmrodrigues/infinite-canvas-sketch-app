@@ -25,6 +25,18 @@ Após validar que conseguimos ler os dados do tablet, precisamos garantir que o 
 - Filtros Savitzky-Golay (será outra POC).
 - UI complexa.
 
+## Retrospectiva & Síntese (Linhagem da POC)
+
+Esta seção documenta o que aprendemos nas validações anteriores e como isso será reutilizado aqui.
+
+### POCs Anteriores Referenciadas
+- `pocs/001_libinput_tablet_input/` — **Retrospectiva:** Validou com sucesso a captura de eventos raw de pen-input (X, Y, Pressão) usando `libinput` no Linux, garantindo que o hardware é compatível.
+
+### Síntese de Reuso (O que será usado?)
+- **Módulos/Arquivos:** A lógica de setup do `libinput` e o loop de eventos básico serão extraídos da POC 001 e integrados na thread de produção desta SPSC.
+- **Lógica/Padrões:** Reuso do padrão de polling isolado.
+- **Por que é útil?** Permite focar na validação da fila `SPSC` e na concorrência entre threads usando dados reais de hardware, em vez de dados simulados.
+
 ## Critérios de Sucesso
 
 - [ ] Compila e roda em modo multi-threaded.

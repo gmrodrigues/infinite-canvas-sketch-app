@@ -1,0 +1,15 @@
+# Backlog: 005_sokol_rendering_foundations
+
+- [/] Planejamento e Arquitetura [ ]
+    - [x] Criar planning.md [x]
+    - [ ] Desenhar o loop principal (Sokol + SPSC) [ ]
+- [ ] Implementação de Core [ ]
+    - [ ] Importar `SpscQueue.zig` e `SavitzkyGolay.zig` das POCs anteriores [ ]
+    - [ ] Configurar Contexto Sokol (GLES2/3) [ ]
+    - [ ] Implementar Vertex Buffer dinâmico para linhas [ ]
+- [ ] Testes de Experiência [ ]
+    - [ ] Validar desenho com Wacom Tablet em tempo real [ ]
+    - [ ] Medir estabilidade de 60 FPS com suavização SG ativa [ ]
+- [ ] Documentação e Conclusão [ ]
+    - [ ] Criar README.md com resultados [ ]
+    - [ ] Gravar um pequeno vídeo (.webp) demonstrando o traço [ ]

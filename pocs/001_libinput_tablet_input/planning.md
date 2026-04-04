@@ -12,6 +12,18 @@
 > `libinput` e ler eventos de pressão (`pressure`), posição (`x`, `y`) e inclinação (`tilt_x`,
 > `tilt_y`) em formato `f64`, sem crash e com valores na faixa esperada.
 
+## Retrospectiva & Síntese (Linhagem da POC)
+
+Esta é a POC **raiz** do projeto. Ela não possui antecessores, mas serve como a base de dados brutos para todas as validações subsequentes.
+
+### POCs Anteriores Referenciadas
+- *Nenhuma (POC Inicial)*
+
+### Síntese de Reuso (O que será entregue?)
+- **Módulos/Arquivos:** Lógica de binding `cImport` para `libinput`.
+- **Lógica/Padrões:** Modelo de extração de eixos `f64` normalizados.
+- **Por que é útil?** sem a garantia de que o hardware conversa com o Zig, nenhuma outra camada (smoothing, spatial, render) pode ser validada com fidelidade.
+
 ## Por Que Esta é a Primeira POC
 
 Esta é a fundação de toda a arquitetura. Se o binding `libinput` → Zig não funcionar no hardware
