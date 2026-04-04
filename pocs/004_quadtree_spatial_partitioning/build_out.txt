@@ -1,0 +1,27 @@
+run
++- run exe quadtree_poc
+   +- compile exe quadtree_poc ReleaseSafe native 1 errors
+main.zig:45:39: error: struct 'array_list.Aligned(QuadTree.Point,null)' has no member named 'init'
+    var results = std.ArrayList(Point).init(allocator);
+                  ~~~~~~~~~~~~~~~~~~~~^~~~~
+/home/linuxbrew/.linuxbrew/Cellar/zig/0.15.2_1/lib/zig/std/array_list.zig:606:12: note: struct declared here
+    return struct {
+           ^~~~~~
+referenced by:
+    callMain [inlined]: /home/linuxbrew/.linuxbrew/Cellar/zig/0.15.2_1/lib/zig/std/start.zig:627:37
+    callMainWithArgs [inlined]: /home/linuxbrew/.linuxbrew/Cellar/zig/0.15.2_1/lib/zig/std/start.zig:587:20
+    posixCallMainAndExit: /home/linuxbrew/.linuxbrew/Cellar/zig/0.15.2_1/lib/zig/std/start.zig:542:36
+    2 reference(s) hidden; use '-freference-trace=5' to see all references
+error: the following command failed with 1 compilation errors:
+/home/linuxbrew/.linuxbrew/Cellar/zig/0.15.2_1/bin/zig build-exe -OReleaseSafe -Mroot=/home/glauber/arquivos/projetos/code-labs/infinite-canvas-sketch-app/pocs/004_quadtree_spatial_partitioning/main.zig --cache-dir .zig-cache --global-cache-dir /home/glauber/.cache/zig --name quadtree_poc --zig-lib-dir /home/linuxbrew/.linuxbrew/Cellar/zig/0.15.2_1/lib/zig/ --listen=-
+
+Build Summary: 0/5 steps succeeded; 1 failed
+run transitive failure
++- run exe quadtree_poc transitive failure
+   +- compile exe quadtree_poc ReleaseSafe native 1 errors
+   +- install transitive failure
+      +- install quadtree_poc transitive failure
+         +- compile exe quadtree_poc ReleaseSafe native (reused)
+
+error: the following build command failed with exit code 1:
+.zig-cache/o/8ee66f75698d683af34bddfa322d3210/build /home/linuxbrew/.linuxbrew/Cellar/zig/0.15.2_1/bin/zig /home/linuxbrew/.linuxbrew/Cellar/zig/0.15.2_1/lib/zig /home/glauber/arquivos/projetos/code-labs/infinite-canvas-sketch-app/pocs/004_quadtree_spatial_partitioning .zig-cache /home/glauber/.cache/zig --seed 0x6da5458f -Z41543523036fec57 run -Doptimize=ReleaseSafe

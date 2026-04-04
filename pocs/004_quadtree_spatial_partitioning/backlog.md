@@ -1,0 +1,16 @@
+# Backlog: 004_quadtree_spatial_partitioning
+
+- [/] Planejamento e Design [ ]
+    - [x] Criar planning.md [x]
+    - [ ] Definir estrutura do Nó (Point vs Range) [ ]
+- [ ] Implementação de Core [ ]
+    - [ ] Estrutura `QuadTree(T, Bounds)` [ ]
+    - [ ] Função `insert(point)` iterativa ou recursiva com split [ ]
+    - [ ] Função `query(range)` para recuperação de pontos [ ]
+- [ ] Testes e Benchmarks [ ]
+    - [ ] Criar gerador de pontos aleatórios em canvas "infinito" [ ]
+    - [ ] Medir tempo de inserção de 1M pontos [ ]
+    - [ ] Medir tempo de query de área [ ]
+- [ ] Documentação e Conclusão [ ]
+    - [ ] Criar README.md com resultados [ ]
+    - [ ] Atualizar o walkthrough global [ ]
