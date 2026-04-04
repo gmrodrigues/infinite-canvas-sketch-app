@@ -20,6 +20,15 @@ Implementação e validação de uma estrutura de dados Quadtree para gerenciame
 - O uso de `Unmanaged ArrayList` no Zig 0.15.2 para os resultados de query minimiza o overhead de alocação se o buffer for reutilizado.
 
 ## Como Executar
+> [!IMPORTANT]
+> O Quadtree usa recursão e muitas pequenas alocações. O modo **Debug** do Zig é significativamente mais lento devido a checagens de segurança. Para ver a performance real (validada), use:
+
 ```bash
 zig build run -Doptimize=ReleaseSafe
 ```
+
+### Resultados Comparativos
+| Modo | Inserção (1M) | Query (1000x1000) | Critério |
+| :--- | :--- | :--- | :--- |
+| **Debug** | ~2600 ms | ~110 µs | ❌ FALHA |
+| **ReleaseSafe** | **655 ms** | **45 µs** | ✅ SUCESSO |
