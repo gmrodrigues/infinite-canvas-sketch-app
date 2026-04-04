@@ -71,7 +71,8 @@ pocs/[ID]_[nome_poc]/
 ├── planning.md       # Hipótese, escopo, critérios de sucesso — feito ANTES de codar
 ├── backlog.md        # Tarefas da POC (mini-sprint)
 ├── log.md            # Diário de descobertas durante o desenvolvimento
-└── README.md         # Resultado final: decisão e learnings (feito APÓS concluir)
+├── README.md         # Resultado final: decisão e learnings (feito APÓS concluir)
+└── Thanks.md         # Créditos e referências a produções intelectuais
 ```
 
 ### Lifecycle de uma POC
@@ -364,6 +365,7 @@ zig build run
 - [ ] `planning.md` preenchido antes do código
 - [ ] `README.md` preenchido com resultado e decisão
 - [ ] Seção de **Segurança e Concorrência** documentada (se aplicável ao nível)
+- [ ] `Thanks.md` preenchido com créditos e referências
 
 ---
 
