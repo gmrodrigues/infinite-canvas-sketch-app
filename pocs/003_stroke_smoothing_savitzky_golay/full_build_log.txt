@@ -1,0 +1,29 @@
+install
++- install savitzky_golay_poc
+   +- compile exe savitzky_golay_poc Debug native 2 errors
+BitMap.zig:47:29: error: expected type 'i32', found 'u32'
+        const dx = @as(i32, @abs(xf - xi));
+                            ^~~~~~~~~~~~~
+BitMap.zig:47:29: note: signed 32-bit int cannot represent all possible unsigned 32-bit values
+referenced by:
+    main: main.zig:50:25
+    callMain [inlined]: /home/linuxbrew/.linuxbrew/Cellar/zig/0.15.2_1/lib/zig/std/start.zig:627:37
+    callMainWithArgs [inlined]: /home/linuxbrew/.linuxbrew/Cellar/zig/0.15.2_1/lib/zig/std/start.zig:587:20
+    posixCallMainAndExit: /home/linuxbrew/.linuxbrew/Cellar/zig/0.15.2_1/lib/zig/std/start.zig:542:36
+    2 reference(s) hidden; use '-freference-trace=6' to see all references
+BitMap.zig:71:28: error: member function expected 1 argument(s), found 0
+        const writer = file.writer();
+                       ~~~~^~~~~~~
+/home/linuxbrew/.linuxbrew/Cellar/zig/0.15.2_1/lib/zig/std/fs/File.zig:2120:5: note: function declared here
+pub fn writer(file: File, buffer: []u8) Writer {
+~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+error: the following command failed with 2 compilation errors:
+/home/linuxbrew/.linuxbrew/Cellar/zig/0.15.2_1/bin/zig build-exe -ODebug -Mroot=/home/glauber/arquivos/projetos/code-labs/infinite-canvas-sketch-app/pocs/003_stroke_smoothing_savitzky_golay/main.zig --cache-dir .zig-cache --global-cache-dir /home/glauber/.cache/zig --name savitzky_golay_poc --zig-lib-dir /home/linuxbrew/.linuxbrew/Cellar/zig/0.15.2_1/lib/zig/ --listen=-
+
+Build Summary: 0/3 steps succeeded; 1 failed
+install transitive failure
++- install savitzky_golay_poc transitive failure
+   +- compile exe savitzky_golay_poc Debug native 2 errors
+
+error: the following build command failed with exit code 1:
+.zig-cache/o/c32f8d30c80cf9aae04e20f56e896a07/build /home/linuxbrew/.linuxbrew/Cellar/zig/0.15.2_1/bin/zig /home/linuxbrew/.linuxbrew/Cellar/zig/0.15.2_1/lib/zig /home/glauber/arquivos/projetos/code-labs/infinite-canvas-sketch-app/pocs/003_stroke_smoothing_savitzky_golay .zig-cache /home/glauber/.cache/zig --seed 0x967dfe0f -Zbd0dc9a0b54c5a5e
