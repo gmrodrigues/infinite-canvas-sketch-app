@@ -55,15 +55,24 @@ do estado atual do projeto principal — que pode estar em transição.
 Uma POC não é um arquivo solto. É um **mini-projeto com início, meio e fim**, contendo:
 
 ```
-pocs/[nome_poc]/
+pocs/[ID]_[nome_poc]/
 ├── build.zig         # Build autossuficiente (não referencia build.zig raiz)
 ├── main.zig          # Entry point standalone
 ├── [outros .zig]     # Módulos internos copiados/adaptados localmente
 │
+```
+
+### Regras de Nomeação
+- Toda POC deve começar com um ID sequencial de 3 dígitos (ex: `001`, `002`).
+- O nome deve ser descritivo e em snake_case.
+- Exemplo: `pocs/001_libinput_tablet_input/`.
+
+```
 ├── planning.md       # Hipótese, escopo, critérios de sucesso — feito ANTES de codar
 ├── backlog.md        # Tarefas da POC (mini-sprint)
 ├── log.md            # Diário de descobertas durante o desenvolvimento
-└── README.md         # Resultado final: decisão e learnings (feito APÓS concluir)
+├── README.md         # Resultado final: decisão e learnings (feito APÓS concluir)
+└── Thanks.md         # Créditos e referências a produções intelectuais
 ```
 
 ### Lifecycle de uma POC
@@ -73,7 +82,12 @@ pocs/[nome_poc]/
 2. EXECUTAR    → Codar em isolamento, registrar descobertas em log.md
 3. VALIDAR     → Verificar critérios de sucesso
 4. DECIDIR     → Preencher README.md com resultado e decisão
-5. ENCERRAR    → INTEGRAR (código vai para src/) ou ABANDONAR (fica arquivado)
+5. ENCERRAR    → INTEGRAR (código vai para src/) ou ARQUIVAR/ABANDONAR
+
+**Gerenciamento de Falhas:**
+- Se uma POC falhar ou for abandonada, ela **NÃO** deve ser deletada.
+- Renomeie o diretório para incluir o sufixo: `[ID]_[nome]-failed-[short-description]`.
+- O `README.md` deve conter um "Failure Analysis" detalhado.
 ```
 
 **Uma POC nunca fica "em aberto"** — ela termina com uma decisão explícita.
@@ -142,6 +156,29 @@ pocs/[nome_poc]/
 
 ---
 
+## Workflow de Relatório (Full Report)
+
+Ao concluir uma POC, é obrigatório gerar um **Full Report** que documente não apenas o sucesso/falha, mas as descobertas que impactam a arquitetura.
+
+### Conteúdo do README.md (Relatório)
+
+1.  **Hipótese Original**: Copiada do `planning.md`.
+2.  **Como Executar**: Comandos exatos para reproduzir.
+3.  **Resultado**: O que foi observado (métricas, logs, screenshots).
+4.  **Descobertas Técnicas**: Gotchas, bugs corrigidos, mudanças de API (ex: compatibilidade com novas versões de Zig).
+5.  **Decisão**: INTEGRAR, REVISAR ou ABANDONAR.
+6.  **Plano de Integração**: Passos concretos se a decisão for integrar.
+7.  **Segurança e Concorrência**: Como foram mitigados data races e crashes (ex: modelo atomics, safety-checks do Zig, stress tests).
+8.  **Learnings**: Conhecimento acumulado para o futuro.
+
+### Execução do Workflow de Relatório
+- **Antes de Rodar**: Verificar se todos os critérios de sucesso do `planning.md` foram testados.
+- **Durante o Teste**: Capturar logs relevantes e evidências de funcionamento (pressure, tilt, latency).
+- **Após Rodar**: Preencher o `README.md` imediatamente enquanto as descobertas estão frescas.
+- **Feedback Loop**: Notificar o Architect ou stakeholders sobre o resultado.
+
+---
+
 ## Estrutura de Diretórios do Projeto
 
 ```
@@ -154,9 +191,10 @@ infinite-canvas-sketch-app/
 │   │   ├── nano/
 │   │   ├── micro/
 │   │   └── macro/
-│   ├── libinput_pressure/       #   Exemplo: Nano POC validada
-│   ├── spsc_sokol_pipeline/     #   Exemplo: Micro POC em andamento
-│   └── [nova_poc]/              #   Nova POC (mini-projeto completo)
+│   ├── 001_libinput_tablet/       #   Exemplo: Nano POC validada
+│   ├── 002_spsc_pipeline/     #   Exemplo: Micro POC em andamento
+│   ├── [ID]_[nova_poc]/              #   Nova POC (mini-projeto completo)
+│   └── 005_sokol_gfx-failed-gl-artifacts/ # Exemplo de falha arquivada
 │
 └── docs/
     ├── Tech.md
@@ -192,6 +230,19 @@ O que esta POC NÃO VAI validar (fora de escopo):
 
 - [ ] [Critério mensurável 1 — ex: latência < 1ms]
 - [ ] [Critério mensurável 2]
+
+## Retrospectiva & Síntese (Linhagem da POC)
+
+Esta seção documenta a linhagem técnica desta POC, referenciando validações anteriores e o que será extraído delas.
+
+### POCs Anteriores Referenciadas
+- `pocs/[ID]_[nome]/` — **Retrospectiva:** O que foi demonstrado? (Ex: "Validou que o filtro SG reduz jitter em 80%").
+- `pocs/[ID]_[outra]/` — **Retrospectiva:** [...]
+
+### Síntese de Reuso (O que será usado?)
+- **Módulos/Arquivos:** `[arquivo].zig` será copiado e adaptado para [finalidade].
+- **Lógica/Padrões:** O padrão de [Threading/Memory] da POC [ID] será replicado aqui.
+- **Por que é útil?** Explicação de como esses componentes aceleram ou tornam viável esta nova validação.
 
 ## Referências Consultadas
 
@@ -295,8 +346,9 @@ zig build run
 ```
 1. Identificar incerteza ou feature nova
 2. Escolher nível (Nano/Micro/Macro)
-3. Criar pocs/[nome_poc]/ com estrutura completa
-4. Preencher planning.md (ANTES de codar)
+3. Determinar o próximo ID sequencial disponível em `pocs/`
+4. Criar `pocs/[ID]_[nome_poc]/` com estrutura completa
+5. Preencher `planning.md` (ANTES de codar)
 5. Codar em isolamento — build.zig próprio, imports locais
    → Pode LER qualquer código do projeto como referência
    → Pode COPIAR lógica para dentro do próprio diretório
@@ -309,6 +361,9 @@ zig build run
 ```
 
 **Nunca pule do passo 4 para o 9 diretamente.**
+
+### Workflow do Relatório Final (Step 8 Enhanced)
+> Se a POC revelou quebras de contrato ou instabilidades (ex: C-ABI), o relatório DEVE detalhar as correções aplicadas para servir de guia na integração.
 
 ---
 
@@ -328,6 +383,8 @@ zig build run
 ### Documentação
 - [ ] `planning.md` preenchido antes do código
 - [ ] `README.md` preenchido com resultado e decisão
+- [ ] Seção de **Segurança e Concorrência** documentada (se aplicável ao nível)
+- [ ] `Thanks.md` preenchido com créditos e referências
 
 ---
 
