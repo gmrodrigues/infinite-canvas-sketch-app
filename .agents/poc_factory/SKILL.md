@@ -82,7 +82,12 @@ pocs/[ID]_[nome_poc]/
 2. EXECUTAR    → Codar em isolamento, registrar descobertas em log.md
 3. VALIDAR     → Verificar critérios de sucesso
 4. DECIDIR     → Preencher README.md com resultado e decisão
-5. ENCERRAR    → INTEGRAR (código vai para src/) ou ABANDONAR (fica arquivado)
+5. ENCERRAR    → INTEGRAR (código vai para src/) ou ARQUIVAR/ABANDONAR
+
+**Gerenciamento de Falhas:**
+- Se uma POC falhar ou for abandonada, ela **NÃO** deve ser deletada.
+- Renomeie o diretório para incluir o sufixo: `[ID]_[nome]-failed-[short-description]`.
+- O `README.md` deve conter um "Failure Analysis" detalhado.
 ```
 
 **Uma POC nunca fica "em aberto"** — ela termina com uma decisão explícita.
@@ -188,7 +193,8 @@ infinite-canvas-sketch-app/
 │   │   └── macro/
 │   ├── 001_libinput_tablet/       #   Exemplo: Nano POC validada
 │   ├── 002_spsc_pipeline/     #   Exemplo: Micro POC em andamento
-│   └── [ID]_[nova_poc]/              #   Nova POC (mini-projeto completo)
+│   ├── [ID]_[nova_poc]/              #   Nova POC (mini-projeto completo)
+│   └── 005_sokol_gfx-failed-gl-artifacts/ # Exemplo de falha arquivada
 │
 └── docs/
     ├── Tech.md
